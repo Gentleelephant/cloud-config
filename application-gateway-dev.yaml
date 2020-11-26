@@ -1,0 +1,21 @@
+server:
+  port: 8999
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+# 开启注册中心服务发现
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: neo_route
+          uri: http://localhost:9000
+          predicates:
+          - Path=/hello
+  application:
+    name: cloud-gateway
